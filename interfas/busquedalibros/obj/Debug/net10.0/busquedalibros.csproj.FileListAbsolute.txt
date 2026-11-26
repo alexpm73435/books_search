@@ -1,0 +1,15 @@
+C:\Users\alexp\OneDrive\Documentos\UASLP\5to\Nueva carpeta\busquedalibros\busquedalibros\bin\Debug\net10.0\busquedalibros.exe
+C:\Users\alexp\OneDrive\Documentos\UASLP\5to\Nueva carpeta\busquedalibros\busquedalibros\bin\Debug\net10.0\busquedalibros.deps.json
+C:\Users\alexp\OneDrive\Documentos\UASLP\5to\Nueva carpeta\busquedalibros\busquedalibros\bin\Debug\net10.0\busquedalibros.runtimeconfig.json
+C:\Users\alexp\OneDrive\Documentos\UASLP\5to\Nueva carpeta\busquedalibros\busquedalibros\bin\Debug\net10.0\busquedalibros.dll
+C:\Users\alexp\OneDrive\Documentos\UASLP\5to\Nueva carpeta\busquedalibros\busquedalibros\bin\Debug\net10.0\busquedalibros.pdb
+C:\Users\alexp\OneDrive\Documentos\UASLP\5to\Nueva carpeta\busquedalibros\busquedalibros\obj\Debug\net10.0\busquedalibros.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alexp\OneDrive\Documentos\UASLP\5to\Nueva carpeta\busquedalibros\busquedalibros\obj\Debug\net10.0\busquedalibros.AssemblyInfoInputs.cache
+C:\Users\alexp\OneDrive\Documentos\UASLP\5to\Nueva carpeta\busquedalibros\busquedalibros\obj\Debug\net10.0\busquedalibros.AssemblyInfo.cs
+C:\Users\alexp\OneDrive\Documentos\UASLP\5to\Nueva carpeta\busquedalibros\busquedalibros\obj\Debug\net10.0\busquedalibros.csproj.CoreCompileInputs.cache
+C:\Users\alexp\OneDrive\Documentos\UASLP\5to\Nueva carpeta\busquedalibros\busquedalibros\obj\Debug\net10.0\busquedalibros.dll
+C:\Users\alexp\OneDrive\Documentos\UASLP\5to\Nueva carpeta\busquedalibros\busquedalibros\obj\Debug\net10.0\refint\busquedalibros.dll
+C:\Users\alexp\OneDrive\Documentos\UASLP\5to\Nueva carpeta\busquedalibros\busquedalibros\obj\Debug\net10.0\busquedalibros.pdb
+C:\Users\alexp\OneDrive\Documentos\UASLP\5to\Nueva carpeta\busquedalibros\busquedalibros\obj\Debug\net10.0\busquedalibros.genruntimeconfig.cache
+C:\Users\alexp\OneDrive\Documentos\UASLP\5to\Nueva carpeta\busquedalibros\busquedalibros\obj\Debug\net10.0\ref\busquedalibros.dll
+C:\Users\alexp\OneDrive\Documentos\UASLP\5to\Nueva carpeta\busquedalibros\busquedalibros\obj\Debug\net10.0\busqueda.DF96BA6E.Up2Date
