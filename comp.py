@@ -24,6 +24,7 @@ def comparar(isbn:str):
         respuesta.raise_for_status()
         productos = respuesta.json()
     except requests.RequestException as error:
+        print(f"Error de Gandhi en /buscar: {error!r}", flush=True)
         raise HTTPException(
             status_code=502,
             detail="No se pudo consultar Gandhi.",
@@ -47,4 +48,44 @@ def comparar(isbn:str):
                         }
                     ]
 
-    return []
+    return []  # Aquí termina comparar
+
+
+@app.get("/buscar")
+def buscar(titulo: str):
+    url = "https://www.gandhi.com.mx/api/catalog_system/pub/products/search"
+
+    parametros = {"ft": titulo.strip(), "_from": 0, "_to": 4}
+
+    try:
+        try:
+            respuesta = requests.get(url, params=parametros, timeout=8)
+        except requests.ConnectionError:
+            print("Se cortó la conexión con Gandhi. Reintentando...", flush=True)
+            time.sleep(1)
+            respuesta = requests.get(url, params=parametros, timeout=8)
+
+        respuesta.raise_for_status()
+        productos = respuesta.json()
+    except requests.RequestException as error:
+        print(f"Error de Gandhi en /buscar: {error!r}", flush=True)
+        raise HTTPException(502, "No se pudo consultar Gandhi.") from error
+
+    resultados = []
+
+    for producto in productos:
+        for libro in producto["items"]:
+            for vendedor in libro["sellers"]:
+                oferta = vendedor["commertialOffer"]
+
+                if oferta["IsAvailable"]:
+                    resultados.append({
+                        "tienda": "Gandhi",
+                        "titulo": producto["productName"],
+                        "precio": oferta["Price"],
+                        "moneda": "MXN",
+                        "isbn": libro["ean"],
+                    })
+                    break
+
+    return resultados

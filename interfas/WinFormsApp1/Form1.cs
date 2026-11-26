@@ -12,15 +12,20 @@ namespace WinFormsApp1
 
         private async void btnBuscar_Click(object sender, EventArgs e)
         {
-            string isbn = txtTitulo.Text.Trim();
+            string busqueda = txtTitulo.Text.Trim();
 
-            if (isbn.Length == 0)
+            if (busqueda.Length == 0)
             {
-                lblResultado.Text = "Escribe el ISBN del libro.";
+                lblResultado.Text = "Escribe el ISBN del libro o el titulo del libro.";
                 return;
             }
 
-            string url = $"http://127.0.0.1:8000/comparar?isbn={Uri.EscapeDataString(isbn)}";
+            bool esIsbn = busqueda.Length == 13 && busqueda.All(char.IsAsciiDigit);
+            string valor = Uri.EscapeDataString(busqueda);
+
+            string url = esIsbn
+                ? $"http://127.0.0.1:8000/comparar?isbn={valor}"
+                : $"http://127.0.0.1:8000/buscar?titulo={valor}";
 
             try
             {
@@ -28,7 +33,7 @@ namespace WinFormsApp1
 
                 if (ofertas is null || ofertas.Count == 0)
                 {
-                    lblResultado.Text = "No se encontraron ofertas para ese ISBN.";
+                    lblResultado.Text = "No se encontraron ofertas .";
                     return;
                 }
 
@@ -36,7 +41,11 @@ namespace WinFormsApp1
 
                 foreach (Libro oferta in ofertas)
                 {
-                    filas.Add($"{oferta.Titulo} — {oferta.Tienda}: {oferta.Precio} {oferta.Moneda}");
+                    string isbnTexto = string.IsNullOrWhiteSpace(oferta.Isbn)
+                        ? ""
+                        : $" | ISBN: {oferta.Isbn}";
+
+                    filas.Add($"{oferta.Titulo} — {oferta.Tienda}: {oferta.Precio} {oferta.Moneda}{isbnTexto}");
                 }
 
                 lblResultado.Text = string.Join(Environment.NewLine, filas);
