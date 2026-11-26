@@ -12,14 +12,38 @@ namespace WinFormsApp1
 
         private async void btnBuscar_Click(object sender, EventArgs e)
         {
-            string titulo = txtTitulo.Text.Trim();
-            string url = $"http://127.0.0.1:8000/comprar?titulo={Uri.EscapeDataString(titulo)}";
+            string isbn = txtTitulo.Text.Trim();
 
-            Libro? libro = await cliente.GetFromJsonAsync<Libro>(url);
-
-            if (libro is not null)
+            if (isbn.Length == 0)
             {
-                lblResultado.Text = $"{libro.Titulo} cuesta {libro.Precio} {libro.Moneda}";
+                lblResultado.Text = "Escribe el ISBN del libro.";
+                return;
+            }
+
+            string url = $"http://127.0.0.1:8000/comparar?isbn={Uri.EscapeDataString(isbn)}";
+
+            try
+            {
+                List<Libro>? ofertas = await cliente.GetFromJsonAsync<List<Libro>>(url);
+
+                if (ofertas is null || ofertas.Count == 0)
+                {
+                    lblResultado.Text = "No se encontraron ofertas para ese ISBN.";
+                    return;
+                }
+
+                var filas = new List<string>();
+
+                foreach (Libro oferta in ofertas)
+                {
+                    filas.Add($"{oferta.Titulo} — {oferta.Tienda}: {oferta.Precio} {oferta.Moneda}");
+                }
+
+                lblResultado.Text = string.Join(Environment.NewLine, filas);
+            }
+            catch (HttpRequestException)
+            {
+                lblResultado.Text = "No se pudo consultar el precio. Revisa la terminal de FastAPI.";
             }
         }
     }
